@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Onboarding Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 450px;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            gap: 10px;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin: 0;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-weight: normal;
+        }
+
+        button {
+            background: #2d89ef;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #1b5fa7;
+        }
+
+        .add-link-btn {
+            background: #28a745;
+            margin-top: 10px;
+        }
+
+        .add-link-btn:hover {
+            background: #1f7f35;
+        }
+
+        .link-group {
+            margin-bottom: 10px;
+        }
+
+        .admin-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+        }
+
+        .admin-link a {
+            color: #888;
+            text-decoration: none;
+        }
+
+        .admin-link a:hover {
+            text-decoration: underline;
+            color: #2d89ef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Onboarding Form</h2>
+
+        <form action="submit_onboarding.php" method="POST">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" required>
+
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+            <label for="major">Major</label>
+            <input type="text" id="major" name="major" required>
+
+            <label for="graduation_year">Graduation Year</label>
+            <input type="number" id="graduation_year" name="graduation_year" min="2020" max="2100" required>
+
+            <label>Links (Optional)</label>
+            <div id="links-container">
+                <div class="link-group">
+                    <input type="text" name="links[]" placeholder="Enter a link">
+                </div>
+            </div>
+
+            <button type="button" class="add-link-btn" onclick="addLinkField()">+ Add Another Link</button>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="consent" name="consent" value="1" required>
+                <label for="consent">I am okay with inputting my information.</label>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p class="admin-link">
+            <a href="AdminLogin.html">Admin Login</a>
+        </p>
+    </div>
+
+    <script>
+        function addLinkField() {
+            const container = document.getElementById("links-container");
+
+            const div = document.createElement("div");
+            div.className = "link-group";
+
+            div.innerHTML = '<input type="text" name="links[]" placeholder="Enter another link">';
+
+            container.appendChild(div);
+        }
+    </script>
+</body>
+</html>
